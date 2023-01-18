@@ -1,3 +1,6 @@
+override CC=x86_64-linux-gnu-gcc
+override LD=x86_64-linux-gnu-ld
+
 # This is the name that our final kernel executable will have.
 # Change as needed.
 override KERNEL := kernel.elf
@@ -71,9 +74,9 @@ override NASMFLAGS += \
     -f elf64
 
 # Use find to glob all *.c, *.S, and *.asm files in the directory and extract the object names.
-override CFILES := $(shell find . -type f -name '*.c')
-override ASFILES := $(shell find . -type f -name '*.S')
-override NASMFILES := $(shell find . -type f -name '*.asm')
+override CFILES := $(shell fd -e c)
+override ASFILES := $(shell fd -e S)
+override NASMFILES := $(shell fd -e asm)
 override OBJ := $(CFILES:.c=.o) $(ASFILES:.S=.o) $(NASMFILES:.asm=.o)
 override HEADER_DEPS := $(CFILES:.c=.d) $(ASFILES:.S=.d)
 

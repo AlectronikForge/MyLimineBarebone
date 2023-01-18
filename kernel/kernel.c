@@ -2,6 +2,8 @@
 #include <stddef.h>
 #include <limine.h>
 
+extern void load_gdt();
+
 // The Limine requests can be placed anywhere, but it is important that
 // the compiler does not optimise them away, so, usually, they should
 // be made volatile or equivalent.
@@ -28,7 +30,11 @@ void _start(void) {
     // We should now be able to call the Limine terminal to print out
     // a simple "Hello World" to screen.
     struct limine_terminal *terminal = terminal_request.response->terminals[0];
-    terminal_request.response->write(terminal, "Hello World", 11);
+    terminal_request.response->write(terminal, "Hello World\n", 11);
+
+    load_gdt();
+
+    terminal_request.response->write(terminal, "Hello GDT", 9);
 
     // We're done, just hang...
     done();
