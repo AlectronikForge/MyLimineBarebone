@@ -12,10 +12,10 @@ typedef struct {
 	uint8_t base_high;
 } __attribute__((packed)) gdt_entry_t;
 
-typedef struct __attribute__((packed)) {
+typedef struct  {
     uint16_t limit;
     uint64_t base;
-} gdtptr_t;
+} __attribute__((packed)) gdtptr_t;
 
 gdt_entry_t gdt[3] = {
     { 0,0,0,0,0,0 },
