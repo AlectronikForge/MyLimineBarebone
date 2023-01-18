@@ -1,6 +1,3 @@
-override CC=x86_64-linux-gnu-gcc
-override LD=x86_64-linux-gnu-ld
-
 # This is the name that our final kernel executable will have.
 # Change as needed.
 override KERNEL := kernel.elf
